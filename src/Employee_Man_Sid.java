@@ -78,10 +78,14 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                         System.out.print("Enter your name:");
                         String name = br.readLine();
                         int space = name.length() - name.replaceAll(" ","").length();
-                        System.out.println(space);
+                       //System.out.println(space);
                             if(space>2){
                                 Employee_Man_Sid m2 = new Employee_Man_Sid("Exceeding whitespace limit! Only upto 2");
                                 throw  m2;
+                            }
+                            if(!name.matches("^[a-z A-Z]")){
+                                Employee_Man_Sid m5 = new Employee_Man_Sid("Containing digits or special character! Invalid input");
+                                throw m5;
                             }
                         int age;
                             System.out.println("Enter your age:");
