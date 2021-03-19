@@ -83,7 +83,7 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                                 Employee_Man_Sid m2 = new Employee_Man_Sid("Exceeding whitespace limit! Only upto 2");
                                 throw  m2;
                             }
-                            if(!name.matches("^[a-z A-Z]")){
+                            if(!name.matches("^[a-z A-Z]*")){
                                 Employee_Man_Sid m5 = new Employee_Man_Sid("Containing digits or special character! Invalid input");
                                 throw m5;
                             }
@@ -113,6 +113,9 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                         }
                         catch (Employee_Man_Sid | IOException m1){
                             m1.printStackTrace();
+                        }
+                        catch(InputMismatchException e){
+                            e.printStackTrace();
                         }
                     }
                     break;
