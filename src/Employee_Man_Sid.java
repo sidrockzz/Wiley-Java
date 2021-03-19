@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 import static java.lang.System.exit;
 interface employment_details{
@@ -11,18 +14,16 @@ public class Employee_Man_Sid extends Exception implements employment_details {
     static String [] designation = new String[20];
     static int [] salary = new int[20];
     static int i = 0;
-    Employee_Man_Sid(){
-
-    }
+    Employee_Man_Sid(){ }
     Employee_Man_Sid(String str){
         super(str);
     }
     @Override
     public void setSalary(String desg,int i){
-        if(desg.equals("programmer")){
+        if(desg.equals("programmer") || desg.equals("Programmer") ){
             salary[i] = 20000;
         }
-        else if(desg.equals("manager")){
+        else if(desg.equals("manager") || desg.equals("Manager")){
             salary[i] = 30000;
         }
         else{
@@ -56,7 +57,6 @@ public class Employee_Man_Sid extends Exception implements employment_details {
             System.out.println(fullname[j]+"\t\t"+tage[j]+"\t\t"+designation[j]+"\t\t"+salary[j]);
         }
     }
-
     public static void main(String[] args) {
         while(true) {
             System.out.println("----------------------------\n" +
@@ -68,23 +68,32 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                     "Choose from above options\n");
             Scanner sc = new Scanner(System.in).useLocale(Locale.US);
             Employee_Man_Sid m = new Employee_Man_Sid();
+            //StringBuffer sb = new StringBuffer();
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             int options = sc.nextInt();
             switch (options) {
                 case 1:
                     while (true) {
-                        System.out.println("Enter your name:");
-                        String name = sc.next();
-                        int age;
                         try {
+                        System.out.print("Enter your name:");
+                        String name = br.readLine();
+                        int space = name.length() - name.replaceAll(" ","").length();
+                        System.out.println(space);
+                            if(space>2){
+                                Employee_Man_Sid m2 = new Employee_Man_Sid("Exceeding whitespace limit! Only upto 2");
+                                throw  m2;
+                            }
+                        int age;
                             System.out.println("Enter your age:");
                             age = sc.nextInt();
                             if(age<18 || age>60){
                                 Employee_Man_Sid m2 = new Employee_Man_Sid("Incorrect Age! Please type correct age between 18 and 60");
                                 throw m2;
                             }
-                        System.out.println("Enter the designation:(p/t/m)");
+                        System.out.println("Enter the designation:(Programmer/Tester/Manager)");
                         String desg = sc.next();
-                            if (desg.equals("programmer") || desg.equals("tester") || desg.equals("manager")) {
+                            if (desg.equals("programmer") || desg.equals("tester") || desg.equals("manager")
+                                    || desg.equals("Programmer") || desg.equals("Tester") || desg.equals("Manager")) {
                                 m.add(name,age, desg);
                                 System.out.println("If you wish not to continue please enter no");
                                 String mn = sc.next();
@@ -98,7 +107,7 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                                 //System.out.println("Please enter the correct designation");
                             }
                         }
-                        catch (Employee_Man_Sid m1){
+                        catch (Employee_Man_Sid | IOException m1){
                             m1.printStackTrace();
                         }
                     }
