@@ -1,8 +1,9 @@
 import java.util.*;
 import static java.lang.System.exit;
 interface employment_details{
-     void add(String name,int age, String desg);
-     void print();
+      void add(String name,int age, String desg);
+      void print();
+      void setSalary(String desg,int i);
         }
 public class Employee_Man_Sid implements employment_details {
     static String [] fullname = new String[20];
@@ -11,10 +12,7 @@ public class Employee_Man_Sid implements employment_details {
     static int [] salary = new int[20];
     static int i =0;
     @Override
-    public void add(String name, int age, String desg){
-        fullname[i]=name;
-        tage[i]=age;
-        designation[i]=desg;
+    public void setSalary(String desg,int i){
         if(desg.equals("p")){
             salary[i] = 20000;
         }
@@ -24,6 +22,13 @@ public class Employee_Man_Sid implements employment_details {
         else{
             salary[i] = 25000;
         }
+    }
+    @Override
+    public void add(String name, int age, String desg){
+        fullname[i]=name;
+        tage[i]=age;
+        designation[i]=desg;
+        setSalary(desg,i);
         i++;
     }
     @Override
@@ -75,7 +80,8 @@ public class Employee_Man_Sid implements employment_details {
                 case 4:
                     exit(0);
                 default:
-                    throw new IllegalStateException("Unexpected value: " + options);
+                    System.out.println("Unexpected Value: " + options + "Please type the correct input");
+                   // continue;
             }
         }
     }
