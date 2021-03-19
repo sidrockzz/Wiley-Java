@@ -5,18 +5,24 @@ interface employment_details{
       void print();
       void setSalary(String desg,int i);
         }
-public class Employee_Man_Sid implements employment_details {
+public class Employee_Man_Sid extends Exception implements employment_details {
     static String [] fullname = new String[20];
     static int [] tage = new int[20];
     static String [] designation = new String[20];
     static int [] salary = new int[20];
-    static int i =0;
+    static int i = 0;
+    Employee_Man_Sid(){
+
+    }
+    Employee_Man_Sid(String str){
+        super(str);
+    }
     @Override
     public void setSalary(String desg,int i){
-        if(desg.equals("p")){
+        if(desg.equals("programmer")){
             salary[i] = 20000;
         }
-        else if(desg.equals("m")){
+        else if(desg.equals("manager")){
             salary[i] = 30000;
         }
         else{
@@ -25,11 +31,23 @@ public class Employee_Man_Sid implements employment_details {
     }
     @Override
     public void add(String name, int age, String desg){
-        fullname[i]=name;
-        tage[i]=age;
-        designation[i]=desg;
-        setSalary(desg,i);
-        i++;
+        try {
+            if(i<9){
+                System.out.println(i);
+                fullname[i] = name;
+                tage[i] = age;
+                designation[i] = desg;
+                setSalary(desg, i);
+                i++;
+            }
+            else {
+                Employee_Man_Sid m4 = new Employee_Man_Sid("Count exceeded");
+                throw  m4;
+            }
+        }
+        catch (Employee_Man_Sid m1){
+            m1.printStackTrace();
+        }
     }
     @Override
     public void print(){
@@ -56,21 +74,32 @@ public class Employee_Man_Sid implements employment_details {
                     while (true) {
                         System.out.println("Enter your name:");
                         String name = sc.next();
-                        System.out.println("Enter your age:");
-                        int age = sc.nextInt();
+                        int age;
+                        try {
+                            System.out.println("Enter your age:");
+                            age = sc.nextInt();
+                            if(age<18 || age>60){
+                                Employee_Man_Sid m2 = new Employee_Man_Sid("Incorrect Age! Please type correct age between 18 and 60");
+                                throw m2;
+                            }
                         System.out.println("Enter the designation:(p/t/m)");
                         String desg = sc.next();
-                        if(desg.equals("p")||desg.equals("t")||desg.equals("m")){
-                            m.add(name, age,desg);
-                            System.out.println("If you wish not to continue please enter no");
-                            String mn = sc.next();
-                            //m.print();
-                            if(mn.equals("no")){
-                                break;
+                            if (desg.equals("programmer") || desg.equals("tester") || desg.equals("manager")) {
+                                m.add(name,age, desg);
+                                System.out.println("If you wish not to continue please enter no");
+                                String mn = sc.next();
+                                //m.print();
+                                if (mn.equals("no")) {
+                                    break;
+                                }
+                            } else {
+                                Employee_Man_Sid m1 = new Employee_Man_Sid("Incorrect Designation");
+                                throw m1;
+                                //System.out.println("Please enter the correct designation");
                             }
                         }
-                        else{
-                            System.out.println("Please enter the correct designation");
+                        catch (Employee_Man_Sid m1){
+                            m1.printStackTrace();
                         }
                     }
                     break;
@@ -80,7 +109,7 @@ public class Employee_Man_Sid implements employment_details {
                 case 4:
                     exit(0);
                 default:
-                    System.out.println("Unexpected Value: " + options + "Please type the correct input");
+                    throw new IllegalStateException("Unexpected value: " + options);
                    // continue;
             }
         }
