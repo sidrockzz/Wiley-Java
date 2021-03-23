@@ -74,7 +74,7 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 options = sc.next();
                 if (!String.valueOf(options).matches("^[0-9]")) {
-                    throw new InputMismatchException("Incorrect Options");
+                    throw new InputMismatchException("Incorrect Options Use only numbers");
                 }
                 switch (options) {
                     case "1":
@@ -115,10 +115,8 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                                     throw m1;
                                     //System.out.println("Please enter the correct designation");
                                 }
-                            } catch (Employee_Man_Sid | IOException m1) {
+                            } catch (Employee_Man_Sid | IOException | InputMismatchException m1) {
                                 m1.printStackTrace();
-                            } catch (InputMismatchException e) {
-                                e.printStackTrace();
                             }
                         }
                         break;
@@ -127,10 +125,12 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                         break;
                     case "4":
                         exit(0);
+                    default:
+                        System.out.println("Invalid input Please enter the input again");
                 }
             }
-            catch(InputMismatchException e){
-                e.printStackTrace();
+            catch(Exception e){
+               System.out.println("Invalid option please give correct value");
             }
         }
     }
