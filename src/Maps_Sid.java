@@ -1,3 +1,5 @@
+import java.util.Iterator;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class Maps_Sid {
@@ -21,5 +23,25 @@ public class Maps_Sid {
         System.out.println(map);
         Object e = map.get("Sid");
         System.out.println(e);
+        //Cannot use the enumeration
+        System.out.println("Size of map is:- " + map.size());
+        if (map.containsKey("Luffy")) {
+            Object a = map.get("Luffy");
+            System.out.println("value for key"
+                    + " \"vishal\" is:- " + a);
+        }
+        TreeMap mp = new TreeMap();
+        mp.put(new Integer(101),"AAA");
+        mp.put(new Integer(102),"BBB");
+        mp.put(new Integer(103),"CCC");
+        mp.put(new Integer(104),"DDD");
+        mp.put(new Integer(105),"EEE");
+        System.out.println(mp);
+        Set s = mp.keySet();
+        Iterator itr = s.iterator();
+        while (itr.hasNext()){
+            Integer k = (Integer) itr.next();
+            System.out.println(k);
+        }
     }
 }
