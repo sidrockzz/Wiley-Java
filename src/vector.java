@@ -1,9 +1,11 @@
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.Vector;
 
 public class vector {
     public static void main(String [] args){
         //vector
+        System.out.println("-----------Vector-------------");
         Vector v = new Vector();
         v.add("A");
         v.add(null);
@@ -26,7 +28,14 @@ public class vector {
         Enumeration en = v.elements();
         while(en.hasMoreElements()){
             Object e = en.nextElement();
-            System.out.println(e+ " ");
+            System.out.print(e+ " ");
+        }
+        System.out.println("");
+        System.out.println("-----------Iterator---------------");
+        Iterator it = v.iterator();
+        while(it.hasNext()){
+            Object e = it.next();
+            System.out.print(e+ " ");
         }
     }
 }
