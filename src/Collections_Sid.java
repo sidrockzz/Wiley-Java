@@ -1,8 +1,9 @@
 import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Vector;
 
-public class vector {
+public class Collections_Sid {
     public static void main(String [] args){
         //vector
         System.out.println("-----------Vector-------------");
@@ -31,11 +32,25 @@ public class vector {
             System.out.print(e+ " ");
         }
         System.out.println("");
+        System.out.println("-----------For enhanced---------------");
+        for (Object e : v) System.out.print(e + " ");
+        System.out.println("");
         System.out.println("-----------Iterator---------------");
         Iterator it = v.iterator();
         while(it.hasNext()){
             Object e = it.next();
             System.out.print(e+ " ");
+        }
+        System.out.println("");
+        System.out.println("-----------List Iterator Forward---------------");
+        ListIterator l = v.listIterator();
+        while (l.hasNext()){
+            System.out.print(l.next()+ " ");
+        }
+        System.out.println("");
+        System.out.println("-----------List Iterator Backward---------------");
+        while (l.hasPrevious()){
+            System.out.print(l.previous()+" ");
         }
     }
 }
