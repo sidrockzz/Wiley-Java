@@ -9,6 +9,7 @@ interface employment_details{
       void setSalary(String desg,int i);
         }
 public class Employee_Man_Sid extends Exception implements employment_details {
+    static HashMap<Integer,String> employee = new HashMap<Integer,String>(20);
     static String [] fullname = new String[20];
     static int [] tage = new int[20];
     static String [] designation = new String[20];
@@ -34,7 +35,8 @@ public class Employee_Man_Sid extends Exception implements employment_details {
     public void add(String name, int age, String desg){
         try {
             if(i<9){
-                System.out.println(i);
+                //employee.put(i,name);
+                //System.out.println(i);
                 fullname[i] = name;
                 tage[i] = age;
                 designation[i] = desg;
@@ -57,7 +59,7 @@ public class Employee_Man_Sid extends Exception implements employment_details {
             System.out.println(fullname[j]+"\t\t"+tage[j]+"\t\t"+designation[j]+"\t\t"+salary[j]);
         }
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         while(true) {
             System.out.println("----------------------------\n" +
                     "Employee Management System\n" +
@@ -69,69 +71,109 @@ public class Employee_Man_Sid extends Exception implements employment_details {
             Scanner sc = new Scanner(System.in).useLocale(Locale.US);
             Employee_Man_Sid m = new Employee_Man_Sid();
             //StringBuffer sb = new StringBuffer();
+            String options = "";
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             try {
-                String options;
-                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 options = sc.next();
-                if (!String.valueOf(options).matches("^[0-9]")) {
+                if (!String.valueOf(options).matches("^[0-9]") || options.equals(" ")) {
                     throw new InputMismatchException("Incorrect Options Use only numbers");
                 }
+            }
+                catch(Exception e){
+                    System.out.println("Invalid option please give correct value");
+                }
+            String name = "";
+            boolean t = true;
                 switch (options) {
                     case "1":
-                        while (true) {
-                            try {
-                                System.out.println("Enter your name:");
-                                String name = br.readLine();
-                                int space = name.length() - name.replaceAll(" ", "").length();
-                                //System.out.println(space);
-                                if (space > 2) {
-                                    Employee_Man_Sid m2 = new Employee_Man_Sid("Exceeding whitespace limit! Only upto 2");
-                                    throw m2;
-                                }
-                                if (!name.matches("^[a-z A-Z]*")) {
-                                    Employee_Man_Sid m5 = new Employee_Man_Sid("Containing digits or special character! Invalid input");
-                                    throw m5;
-                                }
-                                int age;
-                                System.out.println("Enter your age:");
-                                age = sc.nextInt();
-                                if (age < 18 || age > 60) {
-                                    Employee_Man_Sid m2 = new Employee_Man_Sid("Incorrect Age! Please type correct age between 18 and 60");
-                                    throw m2;
-                                }
-                                System.out.println("Enter the designation:(Programmer/Tester/Manager)");
-                                String desg = sc.next();
-                                if (desg.equals("programmer") || desg.equals("tester") || desg.equals("manager")
-                                        || desg.equals("Programmer") || desg.equals("Tester") || desg.equals("Manager")) {
-                                    m.add(name, age, desg);
-                                    System.out.println("If you wish not to continue please enter no");
-                                    String mn = sc.next();
-                                    //m.print();
-                                    if (mn.equals("no")) {
-                                        break;
+                        while (t) {
+                            while (true) {
+                                try {
+                                    System.out.println("Enter your name:");
+                                    name = br.readLine();
+                                    if (name.matches("^\\s+.*") || name.matches("^\\s+.\\s")) {
+                                        Employee_Man_Sid m7 = new Employee_Man_Sid("You have entered space at the beginning please renter the name again!");
+                                        throw m7;
                                     }
-                                } else {
-                                    Employee_Man_Sid m1 = new Employee_Man_Sid("Incorrect Designation");
-                                    throw m1;
-                                    //System.out.println("Please enter the correct designation");
+                                    int wordslength = name.trim().split("\\s+").length;
+                                    int space = name.length() - name.replaceAll(" ", "").length();
+                                    if(wordslength ==1 && space == 3){
+                                        Employee_Man_Sid m1 = new Employee_Man_Sid("You have entered one words and three spaces");
+                                        throw m1;
+                                    }
+                                    if(wordslength == 2 && space == 3){
+                                        Employee_Man_Sid m2 = new Employee_Man_Sid("You have entered two words and three spaces");
+                                        throw m2;
+                                    }
+                                    if (wordslength == 2 && space == 2){
+                                        Employee_Man_Sid m6 = new Employee_Man_Sid("You have entered two words and two spaces");
+                                        throw m6;
+                                    }
+                                    //System.out.println(space);
+                                    if (space > 2) {
+                                        Employee_Man_Sid m2 = new Employee_Man_Sid("Exceeding whitespace limit! Only upto 2");
+                                        throw m2;
+                                    }
+                                    if (name.matches("^[a-z A-Z]*")) {
+                                        break;
+                                    } else {
+                                        Employee_Man_Sid m5 = new Employee_Man_Sid("Containing digits or special character! Invalid input");
+                                        throw m5;
+                                    }
+                                } catch (Employee_Man_Sid | IOException | InputMismatchException m1) {
+                                    m1.printStackTrace();
                                 }
-                            } catch (Employee_Man_Sid | IOException | InputMismatchException m1) {
-                                m1.printStackTrace();
                             }
-                        }
-                        break;
+                            int age = 0;
+                            while (true) {
+                                try {
+                                    System.out.println("Enter your age:");
+                                    age = sc.nextInt();
+                                    if (age < 18 || age > 60) {
+                                        Employee_Man_Sid m2 = new Employee_Man_Sid("Incorrect Age! Please type correct age between 18 and 60");
+                                        throw m2;
+                                    }
+                                    break;
+                                } catch (Employee_Man_Sid m1) {
+                                    System.out.println(m1);
+                                } catch (InputMismatchException m5) {
+                                    System.out.println("You have given something other than numbers! Please enter again!");
+                                    sc.next();
+                                }
+                            }
+                            String desg = "";
+                            while (true) {
+                                try {
+                                    System.out.println("Enter the designation:(Programmer/Tester/Manager)");
+                                    desg = br.readLine();
+                                    if (desg.equals("programmer") || desg.equals("tester") || desg.equals("manager")
+                                            || desg.equals("Programmer") || desg.equals("Tester") || desg.equals("Manager")) {
+                                        m.add(name, age, desg);
+                                        System.out.println("If you wish not to continue please enter no");
+                                        String mn = sc.next();
+                                        //m.print();
+                                        if (mn.equals("no")) {
+                                            t = false;
+                                            break;
+                                        }
+                                        //System.out.println("Please enter the correct designation");
+                                    } else {
+                                        Employee_Man_Sid m1 = new Employee_Man_Sid("Incorrect Designation");
+                                        throw m1;
+                                    }break;
+                                } catch (Employee_Man_Sid | InputMismatchException m1) {
+                                    System.out.println(m1);
+                                }
+                            }
+                        }break;
                     case "2":
                         m.print();
                         break;
+                    case "3":
+
                     case "4":
                         exit(0);
-                    default:
-                        System.out.println("Invalid input Please enter the input again");
                 }
-            }
-            catch(Exception e){
-               System.out.println("Invalid option please give correct value");
-            }
         }
     }
 }
