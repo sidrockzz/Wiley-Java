@@ -32,3 +32,6 @@ xx represents the numerical value between(11-20).
         else{
             salary[i] = 25000;
         }
+
+Time of the system every minute
+Delete option
