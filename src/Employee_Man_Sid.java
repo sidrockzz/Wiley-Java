@@ -164,6 +164,12 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                     List<String> id1 = new ArrayList<String>(ID);
                     for(int j=0;j<ID.size();j++){
                         if(id1.get(j).equals(id)){
+                            writefile("The following data will be removed: \n"+
+                                    "ID: "+ id1.get(j)+ "\n"
+                            +"Name: "+ name.get(j)+"\n"
+                            +"Desgination: "+desg.get(j)+"\n"
+                            +"Age: "+age.get(j)+"\n"
+                            +"Salary: "+ salary.get(j)+"\n");
                             ID.remove(id);
                             full_name.remove(name.get(j));
                             desgination.remove(desg.get(j));
