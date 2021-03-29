@@ -43,7 +43,7 @@ public class Employee_Man_Sid extends Exception implements employment_details {
     static Set<String> full_name = new HashSet<String>();
     static Set<String> ID = new HashSet<String>();
     static ArrayList <String> age = new ArrayList<String>();
-    static Set <String> desgination = new HashSet<String>();
+    static ArrayList <String> desgination = new ArrayList<String>();
     static ArrayList<Double> salary = new ArrayList<Double>();
     static ArrayList<Set<String>> tempname = new ArrayList<Set<String>>();
     static String company = "wy";
@@ -209,10 +209,15 @@ public class Employee_Man_Sid extends Exception implements employment_details {
             System.out.printf("%10s %30s %20s %20s %20s","Employee ID","Employee Name", "Age", "Designation", "Salary");
             System.out.println();
             System.out.println("--------------------------------------------------------------------------------------------------------");
-            for(int i=ID.size()-1;i>=0;i--){
+            for(int i=full_name.size()-1;i>=0;i--){
                 List<String> name = new ArrayList<String>(full_name);
+               // System.out.println(name);
                 List<String> desg = new ArrayList<String>(desgination);
+               // System.out.println(desg);
                 List<String> id = new ArrayList<String>(ID);
+              //  System.out.println(id);
+              //  System.out.println(salary);
+              //  System.out.println(age);
                 System.out.format("%10s %30s %20s %20s %20s", id.get(i),name.get(i),age.get(i),desg.get(i),salary.get(i));
                 System.out.println();
             }
