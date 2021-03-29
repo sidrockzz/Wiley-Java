@@ -52,7 +52,7 @@ public class Employee_Man_Sid extends Exception implements employment_details {
     //static int [] tage = new int[20];
     //static String [] designation = new String[20];
     //static int [] salary = new int[20];
-    static int i = 0;
+    static int count = 0;
     Employee_Man_Sid(String str){
         super(str);
     }
@@ -166,7 +166,7 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                             desgination.remove(desg.get(j));
                             age.remove(j);
                             salary.remove(j);
-                            i--;
+                            count--;
                             break;
                         }
                     }
@@ -184,12 +184,12 @@ public class Employee_Man_Sid extends Exception implements employment_details {
     @Override
     public void add(String name, String age, String desg){
         try {
-            if(i<9){
+            if(count<9){
                 setName(name);
                 setAge(age);
                 setDesignation(desg);
                 setSalary(desg);
-                i++;
+                count++;
             }
             else {
                 Employee_Man_Sid m4 = new Employee_Man_Sid("Count exceeded");
