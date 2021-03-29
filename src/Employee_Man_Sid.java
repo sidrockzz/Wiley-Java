@@ -4,8 +4,29 @@ import java.io.InputStreamReader;
 import java.util.*;
 import static java.lang.System.exit;
 
+class time{
+    public synchronized void time() {
+        try {
+            while (true) {
+                System.out.println(new Date());
+                Thread.sleep(60 * 1000);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+class thread extends Thread {
+    time t;
+    thread(time t) {
+        this.t = t;
+    }
+    public void run() {
+        t.time();
+    }
+}
 
-interface employment_details{
+    interface employment_details{
       void add(String name,String age, String desg);
       void print();
       void setSalary(String desg);
@@ -14,9 +35,10 @@ interface employment_details{
       void setAge(String tage);
       boolean checkName(String name);
       void raiseSalary();
-    Scanner sc = new Scanner(System.in).useLocale(Locale.US);
+      void delete(String ID);
+      Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 }
-public class Employee_Man_Sid extends Exception implements employment_details,Runnable {
+public class Employee_Man_Sid extends Exception implements employment_details {
     static Set<String> full_name = new HashSet<String>();
     static Set<String> ID = new HashSet<String>();
     static ArrayList <String> age = new ArrayList<String>();
@@ -34,8 +56,6 @@ public class Employee_Man_Sid extends Exception implements employment_details,Ru
         super(str);
     }
     Employee_Man_Sid(){}
-
-
     @Override
     public void setSalary(String desg){
         if(desg.equals("programmer") || desg.equals("Programmer") ){
@@ -128,6 +148,13 @@ public class Employee_Man_Sid extends Exception implements employment_details,Ru
     }
 
     @Override
+    public void delete(String id) {
+        if (ID.contains(id)){
+            System.out.println("We have found the ID");
+        }
+    }
+
+    @Override
     public void add(String name, String age, String desg){
         try {
             if(i<9){
@@ -182,39 +209,23 @@ public class Employee_Man_Sid extends Exception implements employment_details,Ru
             return true;
         return false;
     }
-    @Override
-    public void run() {
-        try {
-            while (true) {
-                System.out.println(new Date());
-                Thread.sleep(60 * 1000);
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-    private volatile boolean exit;{
-        exit = false;
-    }
 
-    public void stop() {
-        exit = true;
-    }
     static int i1 =1;
     public static void main(String[] args) throws IOException {
+        time ti = new time();
+        thread t1 = new thread(ti);
+        t1.start();
         while(true) {
             System.out.println("----------------------------\n" +
                     "Employee Management System\n" +
                     "1.Create Employee\n" +
                     "2.Display Employee Details\n" +
                     "3.Raise Salary\n" +
+                    "4.Delete\n" +
                     "4.Exit\n" +
                     "Choose from above options\n");
             //Scanner sc = new Scanner(System.in).useLocale(Locale.US);
             Employee_Man_Sid m = new Employee_Man_Sid();
-            Runnable r = new Employee_Man_Sid();
-            Thread t1 = new Thread(r);
-            t1.start();
             //StringBuffer sb = new StringBuffer();
             String options = "";
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -345,7 +356,11 @@ public class Employee_Man_Sid extends Exception implements employment_details,Ru
                         }
                         break;
                     case "4":
-                        t1.stop();
+                        String id ="";
+                        id = br.readLine();
+                        m.delete(id);
+                        break;
+                    case "5":
                         exit(0);
                     default:
                         System.out.println("Invalid options Please choose the correct options!");

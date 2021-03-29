@@ -23,15 +23,13 @@ xx represents the numerical value between(11-20).
 10)The constraint while entering the information of the employee should be such that the user cannot enter duplicate names i.e if the exact same name exists in the system already then the user should prompted about that and should be asked to try entering the name in some other way such that it doesnt violate the duplicacy condition.
 
 
-        if(desg.equals("programmer") || desg.equals("Programmer") ){
-            salary[i] = 20000;
-        }
-        else if(desg.equals("manager") || desg.equals("Manager")){
-            salary[i] = 30000;
-        }
-        else{
-            salary[i] = 25000;
-        }
+1)deletion functionality:
+delete a record from the system based on the employe_id
+constraint:The id deleted should not be resued again,id can be of the format ccxx where cc represents the 2 character code of company and xx can have values from 11-99 (inclusive).
+The system cannot accept more than 10 entries.
 
-Time of the system every minute
-Delete option
+2)copy all the data into file system using file handling support and perform CRUD opeations on it by following all the rules accordingly.
+
+3)The system should load the contents from the "file" each time it is run and then continue the operations based  on the data stored in the file,it can be adding a record,deleting a record,updating salary,displaying or exit.
+
+4)optional requirement:add a time displaying functionality to your project which displays the current time and keeps updating accordingly.
