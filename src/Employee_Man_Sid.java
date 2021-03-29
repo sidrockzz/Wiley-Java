@@ -47,7 +47,7 @@ public class Employee_Man_Sid extends Exception implements employment_details {
     static ArrayList<Double> salary = new ArrayList<Double>();
     static ArrayList<Set<String>> tempname = new ArrayList<Set<String>>();
     static String company = "wy";
-    static int number = 11;
+    static int number = 10;
     //static String [] fullname = new String[20];
     //static int [] tage = new int[20];
     //static String [] designation = new String[20];
@@ -74,7 +74,8 @@ public class Employee_Man_Sid extends Exception implements employment_details {
     public void setName(String name) {
                 full_name.add(name);
                 tempname.add(full_name);
-                ID.add(company + (number + ID.size()));
+                number = number +1;
+                ID.add(company + (number));
     }
 
     @Override
@@ -184,7 +185,7 @@ public class Employee_Man_Sid extends Exception implements employment_details {
     @Override
     public void add(String name, String age, String desg){
         try {
-            if(count<9){
+            if(count<9 && (number+ID.size())<100){
                 setName(name);
                 setAge(age);
                 setDesignation(desg);
@@ -211,13 +212,13 @@ public class Employee_Man_Sid extends Exception implements employment_details {
             System.out.println("--------------------------------------------------------------------------------------------------------");
             for(int i=full_name.size()-1;i>=0;i--){
                 List<String> name = new ArrayList<String>(full_name);
-               // System.out.println(name);
+                System.out.println(name);
                 List<String> desg = new ArrayList<String>(desgination);
-               // System.out.println(desg);
+                System.out.println(desg);
                 List<String> id = new ArrayList<String>(ID);
-              //  System.out.println(id);
-              //  System.out.println(salary);
-              //  System.out.println(age);
+                System.out.println(id);
+                System.out.println(salary);
+                System.out.println(age);
                 System.out.format("%10s %30s %20s %20s %20s", id.get(i),name.get(i),age.get(i),desg.get(i),salary.get(i));
                 System.out.println();
             }
