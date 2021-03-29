@@ -123,6 +123,7 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                                         salary.set(idx, salary.get(idx) + amount);
                                         System.out.println("Salary raised to employee id = " + id);
                                         System.out.println("New salary for " + tempname.get(idx) + " = " + salary.get(idx));
+                                        writefile("New salary for " + tempname.get(idx) + " = " + salary.get(idx) +"is being updated at "+new Date());
                                         sc.nextLine();
                                         flag = false;
                                         break;
@@ -164,7 +165,7 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                     List<String> id1 = new ArrayList<String>(ID);
                     for(int j=0;j<ID.size();j++){
                         if(id1.get(j).equals(id)){
-                            writefile("The following data will be removed: \n"+
+                            writefile("The following data will be removed: \n"+new Date() +
                                     "ID: "+ id1.get(j)+ "\n"
                             +"Name: "+ name.get(j)+"\n"
                             +"Desgination: "+desg.get(j)+"\n"
@@ -306,6 +307,7 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                         while (t) {
                             while (true) {
                                 try {
+                                    m.writefile("Creating the data at "+ new Date());
                                     System.out.println("Enter your name:");
                                     name = br.readLine();
                                     if (name.matches("^\\s+.*") || name.matches("^\\w*.\\s+.\\w*")) {
