@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 import static java.lang.System.exit;
 
+
 interface employment_details{
       void add(String name,String age, String desg);
       void print();
@@ -14,8 +15,8 @@ interface employment_details{
       boolean checkName(String name);
       void raiseSalary();
     Scanner sc = new Scanner(System.in).useLocale(Locale.US);
-        }
-public class Employee_Man_Sid extends Exception implements employment_details {
+}
+public class Employee_Man_Sid extends Exception implements employment_details,Runnable {
     static Set<String> full_name = new HashSet<String>();
     static Set<String> ID = new HashSet<String>();
     static ArrayList <String> age = new ArrayList<String>();
@@ -33,6 +34,8 @@ public class Employee_Man_Sid extends Exception implements employment_details {
         super(str);
     }
     Employee_Man_Sid(){}
+
+
     @Override
     public void setSalary(String desg){
         if(desg.equals("programmer") || desg.equals("Programmer") ){
@@ -179,6 +182,17 @@ public class Employee_Man_Sid extends Exception implements employment_details {
             return true;
         return false;
     }
+    @Override
+    public void run() {
+        try {
+            while (true) {
+                System.out.println(new Date());
+                Thread.sleep(60 * 1000);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
     static int i1 =1;
     public static void main(String[] args) throws IOException {
         while(true) {
@@ -191,6 +205,9 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                     "Choose from above options\n");
             //Scanner sc = new Scanner(System.in).useLocale(Locale.US);
             Employee_Man_Sid m = new Employee_Man_Sid();
+            Runnable r = new Employee_Man_Sid();
+            Thread t1 = new Thread(r);
+            t1.start();
             //StringBuffer sb = new StringBuffer();
             String options = "";
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -327,4 +344,5 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                 }
         }
     }
+
 }
