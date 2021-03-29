@@ -193,6 +193,13 @@ public class Employee_Man_Sid extends Exception implements employment_details,Ru
             e.printStackTrace();
         }
     }
+    private volatile boolean exit;{
+        exit = false;
+    }
+
+    public void stop() {
+        exit = true;
+    }
     static int i1 =1;
     public static void main(String[] args) throws IOException {
         while(true) {
@@ -338,6 +345,7 @@ public class Employee_Man_Sid extends Exception implements employment_details,Ru
                         }
                         break;
                     case "4":
+                        t1.stop();
                         exit(0);
                     default:
                         System.out.println("Invalid options Please choose the correct options!");
