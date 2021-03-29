@@ -18,3 +18,21 @@ Salary: 25000.0
 ******* 21 Age is added into the data******* 
 ******* testerDesgination is being added******* 
 ******* New salary for [Sid] = 31000.0******* 
+******* Creating the data at Tue Mar 30 01:53:16 IST 2021******* 
+******* The following data is being added at the time  Tue Mar 30 01:53:36 IST 2021******* 
+******* Sid name is into the data******* 
+******* 21 Age is added into the data******* 
+******* testerDesgination is being added******* 
+******* Creating the data at Tue Mar 30 01:55:06 IST 2021******* 
+******* The following data is being added at the time  Tue Mar 30 01:55:11 IST 2021******* 
+******* Sid name is into the data******* 
+******* 21 Age is added into the data******* 
+******* programmerDesgination is being added******* 
+******* For desgination Programmer Salary is being added of 20000.0******* 
+******* Creating the data at Tue Mar 30 01:59:01 IST 2021******* 
+******* The following data is being added at the time  Tue Mar 30 01:59:06 IST 2021******* 
+******* The ID of the employee is wy11******* 
+******* Sid name is into the data******* 
+******* 21 Age is added into the data******* 
+******* manager Desgination is being added******* 
+******* For desgination Programmer Salary is being added of 30000.0******* 

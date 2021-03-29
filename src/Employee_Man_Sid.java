@@ -63,12 +63,15 @@ public class Employee_Man_Sid extends Exception implements employment_details {
     public void setSalary(String desg){
         if(desg.equals("programmer") || desg.equals("Programmer") ){
             salary.add(20000.0);
+            writefile("For desgination Programmer Salary is being added of 20000.0");
         }
         else if(desg.equals("manager") || desg.equals("Manager")){
             salary.add(30000.0);
+            writefile("For desgination Programmer Salary is being added of 30000.0");
         }
         else{
             salary.add(25000.0);
+            writefile("For desgination Programmer Salary is being added of 25000.0");
         }
     }
 
@@ -78,6 +81,8 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                 tempname.add(full_name);
                 number = number +1;
                 ID.add(company + (number));
+                List <String> id = new ArrayList<String>(ID);
+                writefile("The ID of the employee is "+ id.get(id.size()-1));
     }
 
     @Override
@@ -214,11 +219,11 @@ public class Employee_Man_Sid extends Exception implements employment_details {
             if(count<9 && (number+ID.size())<100){
                 writefile("The following data is being added at the time  "+ String.valueOf(new Date()));
                 setName(name);
-                writefile(name+" name is into the data");
+                writefile(name+" name is added into the data");
                 setAge(age);
                 writefile(age + " Age is added into the data");
                 setDesignation(desg);
-                writefile(desg + "Desgination is being added");
+                writefile(desg + " Desgination is being added");
                 setSalary(desg);
                 count++;
             }
