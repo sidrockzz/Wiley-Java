@@ -159,7 +159,17 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                     List<String> name = new ArrayList<String>(full_name);
                     List<String> desg = new ArrayList<String>(desgination);
                     List<String> id1 = new ArrayList<String>(ID);
-                    i--;
+                    for(int j=0;j<ID.size();j++){
+                        if(id1.get(j).equals(id)){
+                            ID.remove(id);
+                            full_name.remove(name.get(j));
+                            desgination.remove(desg.get(j));
+                            age.remove(j);
+                            salary.remove(j);
+                            i--;
+                            break;
+                        }
+                    }
                     break;
                 } else {
                     Employee_Man_Sid m2 = new Employee_Man_Sid("You have entered wrong ID please renter it again");
