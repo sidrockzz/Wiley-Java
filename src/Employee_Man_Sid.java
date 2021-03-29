@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 import static java.lang.System.exit;
+import java.io.*;
 
 class time{
     public synchronized void time() {
@@ -36,6 +37,7 @@ class thread extends Thread {
       boolean checkName(String name);
       void raiseSalary();
       void delete();
+      void writefile(String data);
       Scanner sc = new Scanner(System.in).useLocale(Locale.US);
       BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 }
@@ -183,12 +185,33 @@ public class Employee_Man_Sid extends Exception implements employment_details {
     }
 
     @Override
+    public void writefile(String data) {
+        File log = new File("log.txt");
+        try{
+            if(log.exists()==false){
+                System.out.println("We had to make a new file.");
+                log.createNewFile();
+            }
+            PrintWriter out = new PrintWriter(new FileWriter(log, true));
+            out.append("******* ").append(data).append("******* ").append("\n");
+            out.close();
+        }catch(IOException e){
+            System.out.println("COULD NOT LOG!!");
+        }
+    }
+
+
+    @Override
     public void add(String name, String age, String desg){
         try {
             if(count<9 && (number+ID.size())<100){
+                writefile("The following data is being added at the time  "+ String.valueOf(new Date()));
                 setName(name);
+                writefile(name+" name is into the data");
                 setAge(age);
+                writefile(age + " Age is added into the data");
                 setDesignation(desg);
+                writefile(desg + "Desgination is being added");
                 setSalary(desg);
                 count++;
             }

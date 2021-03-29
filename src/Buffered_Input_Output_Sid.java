@@ -7,7 +7,7 @@ public class Buffered_Input_Output_Sid {
             System.out.println("Writing");
             w = new FileOutputStream("/home/siddharth/IdeaProjects/Wiley/sid.txt");
             BufferedOutputStream br = new BufferedOutputStream(w);
-            String data = "My name is Siddharth.";
+            String data = "My name is Someone.";
             byte[] b =data.getBytes();
             br.write(b);
             br.close();
