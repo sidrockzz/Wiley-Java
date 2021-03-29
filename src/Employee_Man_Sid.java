@@ -35,8 +35,9 @@ class thread extends Thread {
       void setAge(String tage);
       boolean checkName(String name);
       void raiseSalary();
-      void delete(String ID);
+      void delete();
       Scanner sc = new Scanner(System.in).useLocale(Locale.US);
+      BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 }
 public class Employee_Man_Sid extends Exception implements employment_details {
     static Set<String> full_name = new HashSet<String>();
@@ -148,9 +149,25 @@ public class Employee_Man_Sid extends Exception implements employment_details {
     }
 
     @Override
-    public void delete(String id) {
-        if (ID.contains(id)){
-            System.out.println("We have found the ID");
+    public void delete() {
+        while (true) {
+            try {
+                System.out.println("Please enter the ID");
+                String id = br.readLine();
+                if (ID.contains(id)) {
+                    System.out.println("We have found the ID");
+                    List<String> name = new ArrayList<String>(full_name);
+                    List<String> desg = new ArrayList<String>(desgination);
+                    List<String> id1 = new ArrayList<String>(ID);
+                    i--;
+                    break;
+                } else {
+                    Employee_Man_Sid m2 = new Employee_Man_Sid("You have entered wrong ID please renter it again");
+                    throw m2;
+                }
+            } catch (Employee_Man_Sid | IOException m) {
+                System.out.println(m);
+            }
         }
     }
 
@@ -228,7 +245,6 @@ public class Employee_Man_Sid extends Exception implements employment_details {
             Employee_Man_Sid m = new Employee_Man_Sid();
             //StringBuffer sb = new StringBuffer();
             String options = "";
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             try {
                 options = br.readLine();
                 if (!String.valueOf(options).matches("^[0-9]") || options.matches("^\\s+.") ) {
@@ -351,14 +367,20 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                     case "3":
                         if(i1==1){
                             m.print();
+                            i1=0;
                         }else {
                             m.raiseSalary();
                         }
                         break;
                     case "4":
                         String id ="";
-                        id = br.readLine();
-                        m.delete(id);
+                        if(i1==1){
+                            m.print();
+                            i1=0;
+                        }
+                        else {
+                            m.delete();
+                        }
                         break;
                     case "5":
                         exit(0);
