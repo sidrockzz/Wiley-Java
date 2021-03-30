@@ -49,7 +49,7 @@ public class Employee_Man_Sid extends Exception implements employment_details {
     static ArrayList<Double> salary = new ArrayList<Double>();
     static ArrayList<Set<String>> tempname = new ArrayList<Set<String>>();
     static String company = "wy";
-    static int number = 10;
+    static int number = 11;
     //static String [] fullname = new String[20];
     //static int [] tage = new int[20];
     //static String [] designation = new String[20];
@@ -79,8 +79,8 @@ public class Employee_Man_Sid extends Exception implements employment_details {
     public void setName(String name) {
                 full_name.add(name);
                 tempname.add(full_name);
-                number = number +1;
                 ID.add(company + (number));
+                number = number +1;
                 List <String> id = new ArrayList<String>(ID);
                 writefile("The ID of the employee is "+ id.get(id.size()-1));
     }
@@ -182,6 +182,7 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                             age.remove(j);
                             salary.remove(j);
                             count--;
+                           // number = number + 1;
                             break;
                         }
                     }
@@ -290,7 +291,7 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                     "2.Display Employee Details\n" +
                     "3.Raise Salary\n" +
                     "4.Delete\n" +
-                    "4.Exit\n" +
+                    "5.Exit\n" +
                     "Choose from above options\n");
             //Scanner sc = new Scanner(System.in).useLocale(Locale.US);
             Employee_Man_Sid m = new Employee_Man_Sid();
