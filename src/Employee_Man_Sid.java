@@ -379,7 +379,7 @@ public class Employee_Man_Sid extends Exception implements employment_details {
                                     sc.next();
                                 } catch (NumberFormatException e) {
                                     System.out.println("Enter the correct age");
-                                    sc.next();
+                                    br.read();
                                 }
                             }
                             String desg = "";
