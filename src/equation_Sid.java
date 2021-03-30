@@ -1,9 +1,11 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Scanner;
 import java.util.Stack;
 
 public class equation_Sid {
     static boolean check(String s){
-        Stack <Character> st = new Stack<Character>();
+        Deque<Character> st = new ArrayDeque<Character>();
         for(int i=0;i<s.length();i++){
             char x = s.charAt(i);
             if (x == '(' || x == '[' || x == '{') {
@@ -14,24 +16,22 @@ public class equation_Sid {
                 return false;
             }
             char check;
-            switch (x){
-                case ')':
+            switch (x) {
+                case ')' -> {
                     check = st.pop();
                     if (check == '{' || check == '[')
                         return false;
-                    break;
-
-                case '}':
+                }
+                case '}' -> {
                     check = st.pop();
                     if (check == '(' || check == '[')
                         return false;
-                    break;
-
-                case ']':
+                }
+                case ']' -> {
                     check = st.pop();
                     if (check == '(' || check == '{')
                         return false;
-                    break;
+                }
             }
         }
         return st.isEmpty();
