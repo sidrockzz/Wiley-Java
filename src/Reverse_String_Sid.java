@@ -1,11 +1,11 @@
-class Stack{
+class Stack1 {
     int size;
     int top;
     char[] a;
     boolean isEmpty() {
         return (top < 0);
     }
-    Stack(int n) {
+    Stack1(int n) {
         top = -1;
         size = n;
         a = new char[size];
@@ -34,7 +34,7 @@ class Stack{
 public class Reverse_String_Sid{
     public static void reverse(StringBuffer s){
         int n = s.length();
-        Stack obj = new Stack(n);
+        Stack1 obj = new Stack1(n);
         int i;
         for (i = 0; i < n; i++)
             obj.push(s.charAt(i));
