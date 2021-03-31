@@ -4,7 +4,7 @@ public class jdbc_Sid {
        // Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Company_DB","root","NikiSiddu3014!");
         Statement st = con.createStatement();
-        st.executeUpdate("update Company_DB.users set password='Awesome' where Company_DB.users.user_id=321710306001");
+        st.executeUpdate("delete from users where user_id=321710306011");
         ResultSet rs = st.executeQuery("select * from Company_DB.users");
         System.out.println("Executed Succeesfully");
         while(rs.next()){
