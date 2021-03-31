@@ -35,7 +35,7 @@ class thread extends Thread {
     }
 }
 
-    interface employment_details{
+interface employment_details{
       void add(String name,String age, String desg);
       void print();
       void setSalary(String desg);

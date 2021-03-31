@@ -4,9 +4,11 @@ public class jdbc_Sid {
        // Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Company_DB","root","NikiSiddu3014!");
         Statement st = con.createStatement();
-        ResultSet rs = st.executeQuery("Select * from cdb");
+        st.executeUpdate("insert into Company_DB.users values (321710306011,'stnad','user')");
+        ResultSet rs = st.executeQuery("select * from Company_DB.users");
+        System.out.println("Executed Succeesfully");
         while(rs.next()){
-            int id = rs.getInt(1);
+            Long id = rs.getLong(1);
             String name = rs.getString(2);
             System.out.println(id+"\t"+name);
         }
