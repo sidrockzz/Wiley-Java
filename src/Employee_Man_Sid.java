@@ -1,18 +1,26 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import static java.lang.System.exit;
 import java.io.*;
 
 class time{
-    public synchronized void time() {
+    public static java.util.Date getDate() {
+        java.util.Date date = new java.util.Date();
+        return date;
+    }
+    public void time() {
         try {
             while (true) {
-                System.out.println(new Date());
-                Thread.sleep(60 * 1000);
+                DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+                System.out.print("[ "+dateFormat.format(getDate())+" ]"+"\r");
+                //Thread.sleep(60 * 1000);
+                Thread.sleep(1000);
             }
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -22,7 +30,7 @@ class thread extends Thread {
     thread(time t) {
         this.t = t;
     }
-    public void run() {
+    public synchronized void run() {
         t.time();
     }
 }
