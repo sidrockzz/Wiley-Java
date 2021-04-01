@@ -13,5 +13,8 @@ public class reverse_String {
         StringBuffer s2 = new StringBuffer(s);
         s2.reverse();
         System.out.println(s2);
+        for(int i=s.length()-1;i>=0;i--){
+            System.out.print(s.charAt(i));
+        }
     }
 }
