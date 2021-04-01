@@ -6,6 +6,7 @@ public class swap_numbers {
         int a = sc.nextInt();
         int b = sc.nextInt();
         int c;
+        //a = a + b; b = a - b; a = a - b;
         System.out.println(a+" "+b);
         c=a;
         a=b;
