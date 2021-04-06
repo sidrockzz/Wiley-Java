@@ -1,5 +1,5 @@
 import java.util.concurrent.*;
-class PrintNum implements Runnable {
+class PrintNum extends Thread{
     private int lastNum;
 
     public PrintNum(int n) {
@@ -13,7 +13,7 @@ class PrintNum implements Runnable {
         System.out.println();
     }
 }
-class PrintChar implements Runnable {
+class PrintChar extends Thread {
     private char charToPrint;
     private int times;
     public PrintChar(char c, int t) {
